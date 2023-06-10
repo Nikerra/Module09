@@ -1,7 +1,15 @@
 package org.example.Module09;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.time.LocalDateTime;
 
+
+@RestController
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class WeatherInfo {
 
     private String city;
@@ -43,4 +51,36 @@ public class WeatherInfo {
      * If current time is above expiry time then current weather info is not actual!
      */
     private LocalDateTime expiryTime;
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public double getTemperature() {
+        return temperature;
+    }
+
+    public double getFeelsLikeTemperature() {
+        return feelsLikeTemperature;
+    }
+
+    public double getWindSpeed() {
+        return windSpeed;
+    }
+
+    public double getPressure() {
+        return pressure;
+    }
+
+    public LocalDateTime getExpiryTime() {
+        return expiryTime;
+    }
 }

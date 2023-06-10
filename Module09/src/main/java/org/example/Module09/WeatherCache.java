@@ -2,6 +2,7 @@ package org.example.Module09;
 
 import org.example.Module09.WeatherInfo;
 import org.example.Module09.WeatherProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +17,10 @@ public class WeatherCache {
      */
     public WeatherCache() {
     }
-
+    @Autowired
+    public void setWeatherProvider(WeatherProvider weatherProvider) {
+        this.weatherProvider = weatherProvider;
+    }
     /**
      * Get ACTUAL weather info for current city or null if current city not found.
      * If cache doesn't contain weather info OR contains NOT ACTUAL info then we should download info

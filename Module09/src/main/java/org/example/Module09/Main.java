@@ -12,6 +12,8 @@ public class Main {
         WeatherCache cache = context.getBean(WeatherCache.class);
 
         WeatherInfo weatherInfo = cache.getWeatherInfo("OMSK");
+        WeatherProvider weatherProvider = new WeatherProvider();
+        weatherProvider.get("Pyatigorsk");
         System.out.println("GOOD! weather=" + weatherInfo);
     }
 }
