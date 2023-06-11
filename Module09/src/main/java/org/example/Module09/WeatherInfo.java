@@ -57,8 +57,8 @@ public class WeatherInfo {
 
     public WeatherInfo(WeatherInfoReponse wir) {
         this.city = wir.name;
-        this.shortDescription = String.valueOf(wir.weather.get(0));
-        this.description = String.valueOf(wir.weather.get(0));
+        this.shortDescription = String.valueOf(wir.weather.get(0).getMain());
+        this.description = String.valueOf(wir.weather.get(0).getDescription());
         this.temperature = wir.main.temp;
         this.feelsLikeTemperature = wir.main.feels_like;
         this.windSpeed = wir.wind.speed;
@@ -70,20 +70,6 @@ public class WeatherInfo {
         return city;
     }
 
-
-    @Override
-    public String toString() {
-        return "WeatherInfo{" +
-                "city='" + city + '\'' +
-                ", shortDescription='" + shortDescription + '\'' +
-                ", description='" + description + '\'' +
-                ", temperature=" + temperature +
-                ", feelsLikeTemperature=" + feelsLikeTemperature +
-                ", windSpeed=" + windSpeed +
-                ", pressure=" + pressure +
-                ", expiryTime=" + expiryTime +
-                '}';
-    }
 
     @Override
     public String toString() {
