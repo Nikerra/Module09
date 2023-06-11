@@ -7,12 +7,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class App {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(MyConfig.class);
-
         WeatherCache cache = context.getBean(WeatherCache.class);
-
-        WeatherInfo weatherInfo = cache.getWeatherInfo("OMSK");
-        WeatherProvider weatherProvider = new WeatherProvider();
-        weatherProvider.get("Пятигорск");
+        WeatherInfo weatherInfo = cache.getWeatherInfo("Пятигорск");
         System.out.println("GOOD! weather=" + weatherInfo);
     }
 }

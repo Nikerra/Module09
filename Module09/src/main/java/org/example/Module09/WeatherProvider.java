@@ -4,7 +4,7 @@ package org.example.Module09;
  * Weather provider
  */
 
-import org.example.Module09.WeatherApiModel.WeatherInfoReponse;
+import org.example.Module09.WeatherApiModel.WeatherInfoResponse;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -26,13 +26,7 @@ public class WeatherProvider {
      * @return weather info or null
      */
     public WeatherInfo get(String city) {
-
-        WeatherInfoReponse root = restTemplate.getForObject(QUERY + city + "&units=metric&appid=" + appKey, WeatherInfoReponse.class);
-        System.out.println(root);
-        WeatherInfo weatherInfo = new WeatherInfo(root);
-        System.out.println(weatherInfo.getCity());
-        System.out.println(weatherInfo);
-
-        return null;
+        WeatherInfoResponse wir = restTemplate.getForObject(QUERY + city + "&units=metric&appid=" + appKey, WeatherInfoResponse.class);
+        return new WeatherInfo(wir);
     }
 }

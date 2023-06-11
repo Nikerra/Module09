@@ -31,8 +31,7 @@ public class WeatherCache {
      * @return actual weather info
      */
     public WeatherInfo getWeatherInfo(String city) {
-        // should be implemented
-        return null;
+        return weatherProvider.get(city);
     }
 
     /**

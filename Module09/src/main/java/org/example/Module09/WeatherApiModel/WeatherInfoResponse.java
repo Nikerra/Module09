@@ -4,7 +4,7 @@ import lombok.Data;
 
 import java.util.ArrayList;
 @Data
-public class WeatherInfoReponse {
+public class WeatherInfoResponse {
     public Coord coord;
     public ArrayList<Weather> weather;
     public String base;

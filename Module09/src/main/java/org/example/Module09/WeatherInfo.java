@@ -2,7 +2,7 @@ package org.example.Module09;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.example.Module09.WeatherApiModel.WeatherInfoReponse;
+import org.example.Module09.WeatherApiModel.WeatherInfoResponse;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
@@ -53,7 +53,7 @@ public class WeatherInfo {
      */
     private LocalDateTime expiryTime;
 
-    public WeatherInfo(WeatherInfoReponse wir) {
+    public WeatherInfo(WeatherInfoResponse wir) {
         this.city = wir.name;
         this.shortDescription = wir.weather.get(0).getMain();
         this.description = wir.weather.get(0).getDescription();
