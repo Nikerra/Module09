@@ -32,7 +32,7 @@ public class WeatherProvider {
      * @param city - city
      * @return weather info or null
      */
-    @Autowired
+
     public WeatherInfo get(String city) {
         WeatherInfoResponse wir = restTemplate.getForObject(URL+ city + "&units=metric&appid=" + appKey, WeatherInfoResponse.class);
         return new WeatherInfo(wir);
