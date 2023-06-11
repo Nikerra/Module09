@@ -1,6 +1,5 @@
 package org.example.Module09.WeatherApiModel;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+;
 import lombok.Data;
 
 @Data
@@ -11,16 +10,4 @@ public class Main{
     public double temp_max;
     public int pressure;
     public int humidity;
-
-    @Override
-    public String toString() {
-        return "Main{" +
-                "temp=" + temp +
-                ", feels_like=" + feels_like +
-                ", temp_min=" + temp_min +
-                ", temp_max=" + temp_max +
-                ", pressure=" + pressure +
-                ", humidity=" + humidity +
-                '}';
-    }
 }

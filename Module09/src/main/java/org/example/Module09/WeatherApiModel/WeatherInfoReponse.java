@@ -18,22 +18,4 @@ public class WeatherInfoReponse {
     public int id;
     public String name;
     public int cod;
-    @Override
-    public String toString() {
-        return "Root{" +
-                "coord=" + coord +
-                ", weather=" + weather +
-                ", base='" + base + '\'' +
-                ", main=" + main +
-                ", visibility=" + visibility +
-                ", wind=" + wind +
-                ", clouds=" + clouds +
-                ", dt=" + dt +
-                ", sys=" + sys +
-                ", timezone=" + timezone +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                ", cod=" + cod +
-                '}';
-    }
 }
