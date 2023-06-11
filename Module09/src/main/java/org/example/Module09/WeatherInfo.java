@@ -83,4 +83,18 @@ public class WeatherInfo {
     public LocalDateTime getExpiryTime() {
         return expiryTime;
     }
+
+    @Override
+    public String toString() {
+        return "WeatherInfo{" +
+                "city='" + city + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", description='" + description + '\'' +
+                ", temperature=" + temperature +
+                ", feelsLikeTemperature=" + feelsLikeTemperature +
+                ", windSpeed=" + windSpeed +
+                ", pressure=" + pressure +
+                ", expiryTime=" + expiryTime +
+                '}';
+    }
 }

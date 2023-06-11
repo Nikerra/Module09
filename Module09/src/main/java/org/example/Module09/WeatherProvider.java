@@ -25,10 +25,11 @@ public class WeatherProvider {
     public WeatherInfo get(String city) {
 
         WeatherInfoJson weatherInfoJson = (restTemplate.getForObject(QUERY, WeatherInfoJson.class));
-        WeatherInfo weatherInfo = new WeatherInfo();
+        WeatherInfo weatherInfo = restTemplate.getForObject(QUERY, WeatherInfo.class);
         String str = String.valueOf(weatherInfoJson);
 //        weatherInfoJson.fromJson(weatherInfoJson);
-        System.out.println(str.toString());
+        System.out.println(weatherInfo);
+        System.out.println(weatherInfoJson.getMain().getTemp_max());
         System.out.println(weatherInfo.getTemperature());
         System.out.println(weatherInfo.getCity());
         return null;
