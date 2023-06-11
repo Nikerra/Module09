@@ -4,24 +4,26 @@ package org.example.Module09;
  * Weather provider
  */
 
+import lombok.RequiredArgsConstructor;
 import org.example.Module09.WeatherApiModel.WeatherInfoResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 /**
  * Weather provider
  */
-@PropertySource("classpath:application.properties")
+@Component
+@RequiredArgsConstructor
 public class WeatherProvider {
-    @Autowired
-    private RestTemplate restTemplate;
 
+    private final RestTemplate restTemplate;
     @Value("${default.appKey}")
     private String appKey;
     @Value("${default.url}")
     private String URL;
+    @Value("${default.metric}")
+    private String metric;
 
 //    https://api.openweathermap.org/data/2.5/weather?q=Pyatigorsk&units=metric&appid=80bd6ce6122c1cb811b741b993e8a17b
     /**
@@ -34,7 +36,7 @@ public class WeatherProvider {
      */
 
     public WeatherInfo get(String city) {
-        WeatherInfoResponse wir = restTemplate.getForObject(URL+ city + "&units=metric&appid=" + appKey, WeatherInfoResponse.class);
+        WeatherInfoResponse wir = restTemplate.getForObject(URL+ city + metric + appKey, WeatherInfoResponse.class);
         return new WeatherInfo(wir);
     }
 }

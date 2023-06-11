@@ -1,17 +1,11 @@
 package org.example.Module09;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.example.Module09.WeatherApiModel.WeatherInfoResponse;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.time.LocalDateTime;
 
 
 @Data
-@RestController
-@JsonIgnoreProperties(ignoreUnknown = true)
-
 public class WeatherInfo {
 
     private String city;
@@ -62,6 +56,6 @@ public class WeatherInfo {
         this.feelsLikeTemperature = wir.main.feels_like;
         this.windSpeed = wir.wind.speed;
         this.pressure = wir.main.pressure;
-        this.expiryTime = LocalDateTime.now();
+        this.expiryTime = LocalDateTime.now().plusMinutes(1);
     }
 }
