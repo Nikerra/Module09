@@ -1,13 +1,16 @@
 package org.example.Module09;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
+import lombok.Data;
+import org.example.Module09.WeatherApiModel.WeatherInfoReponse;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
-
+@Data
 @RestController
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WeatherInfo {
@@ -44,7 +47,7 @@ public class WeatherInfo {
     /**
      * Pressure.
      */
-    private double pressure;
+    private final double pressure;
 
     /**
      * Expiry time of weather info.
@@ -52,36 +55,34 @@ public class WeatherInfo {
      */
     private LocalDateTime expiryTime;
 
+    public WeatherInfo(WeatherInfoReponse wir) {
+        this.city = wir.name;
+        this.shortDescription = String.valueOf(wir.weather.get(0));
+        this.description = String.valueOf(wir.weather.get(0));
+        this.temperature = wir.main.temp;
+        this.feelsLikeTemperature = wir.main.feels_like;
+        this.windSpeed = wir.wind.speed;
+        this.pressure = wir.main.pressure;
+        this.expiryTime = LocalDateTime.now();
+    }
+
     public String getCity() {
         return city;
     }
 
-    public String getShortDescription() {
-        return shortDescription;
-    }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public double getTemperature() {
-        return temperature;
-    }
-
-    public double getFeelsLikeTemperature() {
-        return feelsLikeTemperature;
-    }
-
-    public double getWindSpeed() {
-        return windSpeed;
-    }
-
-    public double getPressure() {
-        return pressure;
-    }
-
-    public LocalDateTime getExpiryTime() {
-        return expiryTime;
+    @Override
+    public String toString() {
+        return "WeatherInfo{" +
+                "city='" + city + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", description='" + description + '\'' +
+                ", temperature=" + temperature +
+                ", feelsLikeTemperature=" + feelsLikeTemperature +
+                ", windSpeed=" + windSpeed +
+                ", pressure=" + pressure +
+                ", expiryTime=" + expiryTime +
+                '}';
     }
 
     @Override

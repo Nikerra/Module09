@@ -4,6 +4,7 @@ package org.example.Module09;
  * Weather provider
  */
 
+import org.example.Module09.WeatherApiModel.WeatherInfoReponse;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -11,9 +12,11 @@ import org.springframework.web.client.RestTemplate;
  */
 public class WeatherProvider {
 
-    private RestTemplate restTemplate = new RestTemplate();
-    private String appKey;
-    private final String QUERY = "https://api.openweathermap.org/data/2.5/weather?q=Pyatigorsk&units=metric&appid=80bd6ce6122c1cb811b741b993e8a17b";
+    private final RestTemplate restTemplate = new RestTemplate();
+    private final String appKey = "80bd6ce6122c1cb811b741b993e8a17b";
+    private final String QUERY = "https://api.openweathermap.org/data/2.5/weather?q=";
+//            "Pyatigorsk&units=metric&appid=" + appKey;
+//    https://api.openweathermap.org/data/2.5/weather?q=Pyatigorsk&units=metric&appid=80bd6ce6122c1cb811b741b993e8a17b
     /**
      * Download ACTUAL weather info from internet.
      * You should call GET http://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
@@ -24,14 +27,12 @@ public class WeatherProvider {
      */
     public WeatherInfo get(String city) {
 
-        WeatherInfoJson weatherInfoJson = (restTemplate.getForObject(QUERY, WeatherInfoJson.class));
-        WeatherInfo weatherInfo = restTemplate.getForObject(QUERY, WeatherInfo.class);
-        String str = String.valueOf(weatherInfoJson);
-//        weatherInfoJson.fromJson(weatherInfoJson);
-        System.out.println(weatherInfo);
-        System.out.println(weatherInfoJson.getMain().getTemp_max());
-        System.out.println(weatherInfo.getTemperature());
+        WeatherInfoReponse root = restTemplate.getForObject(QUERY + city + "&units=metric&appid=" + appKey, WeatherInfoReponse.class);
+        System.out.println(root);
+        WeatherInfo weatherInfo = new WeatherInfo(root);
         System.out.println(weatherInfo.getCity());
+        System.out.println(weatherInfo);
+
         return null;
     }
 }
