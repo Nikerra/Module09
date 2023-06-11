@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @RestController
 @JsonIgnoreProperties(ignoreUnknown = true)
+
 public class WeatherInfo {
 
     private String city;

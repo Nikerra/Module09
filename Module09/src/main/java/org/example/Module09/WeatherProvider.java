@@ -5,17 +5,24 @@ package org.example.Module09;
  */
 
 import org.example.Module09.WeatherApiModel.WeatherInfoResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.client.RestTemplate;
 
 /**
  * Weather provider
  */
+@PropertySource("classpath:application.properties")
 public class WeatherProvider {
+    @Autowired
+    private RestTemplate restTemplate;
 
-    private final RestTemplate restTemplate = new RestTemplate();
-    private final String appKey = "80bd6ce6122c1cb811b741b993e8a17b";
-    private final String QUERY = "https://api.openweathermap.org/data/2.5/weather?q=";
-//            "Pyatigorsk&units=metric&appid=" + appKey;
+    @Value("${default.appKey}")
+    private String appKey;
+    @Value("${default.url}")
+    private String URL;
+
 //    https://api.openweathermap.org/data/2.5/weather?q=Pyatigorsk&units=metric&appid=80bd6ce6122c1cb811b741b993e8a17b
     /**
      * Download ACTUAL weather info from internet.
@@ -25,8 +32,9 @@ public class WeatherProvider {
      * @param city - city
      * @return weather info or null
      */
+    @Autowired
     public WeatherInfo get(String city) {
-        WeatherInfoResponse wir = restTemplate.getForObject(QUERY + city + "&units=metric&appid=" + appKey, WeatherInfoResponse.class);
+        WeatherInfoResponse wir = restTemplate.getForObject(URL+ city + "&units=metric&appid=" + appKey, WeatherInfoResponse.class);
         return new WeatherInfo(wir);
     }
 }
